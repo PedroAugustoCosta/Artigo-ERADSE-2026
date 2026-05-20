@@ -1,0 +1,14 @@
+[2026-05-20 17:28:12,276][flwr][WARNING] - DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[2026-05-20 17:28:43,817][flwr][WARNING] - No fit_metrics_aggregation_fn provided
+[2026-05-20 17:28:49,962][flwr][WARNING] - No evaluate_metrics_aggregation_fn provided

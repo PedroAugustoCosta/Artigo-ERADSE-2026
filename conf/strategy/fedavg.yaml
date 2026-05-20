@@ -1,0 +1,15 @@
+---
+
+
+strategy:
+  _target_: flwr.server.strategy.FedAvg
+  fraction_fit: 1.0            # Alterar de 1.0e-05 para 1.0
+  min_fit_clients: 10          # Alterar para o número total de clientes (ou igual ao num_clients)
+  fraction_evaluate: 1.0       # Alterar para 1.0
+  min_evaluate_clients: 10     # Alterar para o número total de clientes
+  min_available_clients: 10
+on_fit_config_fn: 
+  _target_: server.get_on_fit_config
+  config: ${config_fit}
+  
+   

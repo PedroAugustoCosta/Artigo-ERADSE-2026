@@ -1,0 +1,26 @@
+---
+
+foo: 123
+
+bar: 
+  baz: [1,2,3, 4.99]
+  bb: ${foo}
+
+
+my_func:
+  _target_: toy.my_func
+  x: 123
+  y: 321
+
+
+my_partial_func:
+_target_: toy.my_func
+_partial_: True
+x: 99
+
+
+
+my_object:
+  _target_: toy.Myclass
+  x: 23
+

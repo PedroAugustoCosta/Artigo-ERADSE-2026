@@ -1,0 +1,18 @@
+# Pastas de ambiente virtual
+venv/
+env/
+.env/
+.venv/
+
+# Arquivos temporários de Python e cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pastas de IDEs (opcional, mas recomendado)
+.vscode/
+.idea/
+
+# Opcional: Se estiver usando Godot no mesmo projeto
+.godot/
