@@ -3,7 +3,7 @@ from omegaconf import DictConfig, OmegaConf
 import flwr as fl
 
 from client import generate_client_fn
-from dataset import prepare_dataset
+from dataset_non_iid import prepare_dataset
 from server import get_on_fit_config,get_evaluate_fn
 
 from hydra.core.hydra_config import HydraConfig
