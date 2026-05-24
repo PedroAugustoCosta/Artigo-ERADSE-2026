@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import numpy as np
-from dataset import get_MNIST,prepare_dataset
+
 import matplotlib.pyplot as plt
 import numpy as np
 import random
@@ -87,9 +87,3 @@ def plot_absolute_distribution(dict_usuarios, trainset):
     plt.tight_layout()
     plt.show()
 
-dict_treino, _ = prepare_dataset(num_clients=10)
-if isinstance(dict_treino, tuple):
-    dict_treino = dict_treino[0]
-
-trainset, _ = get_MNIST()
-plot_absolute_distribution(dict_treino, trainset)

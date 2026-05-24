@@ -99,7 +99,7 @@ def prepare_dataset(num_clients=10,batch_size=32):
     testloader= DataLoader(testset,batch_size=128)
     trainloaders, valloaders = prepare_dataloaders(trainset, testset, dict_usuarios, dict_test, batch_size=32)
  
-    return trainloaders, valloaders ,testloader
+    return trainloaders, valloaders ,testloader,dict_usuarios
     
    
 import random
@@ -153,5 +153,8 @@ def prepare_dataloaders(trainset, testset, dict_usuarios_treino, dict_test, batc
     return trainloaders, testloaders
 
 trainset, testset = get_MNIST()
-dict_usuarios_treino, dict_test,_ = prepare_dataset(num_clients=10)
+dict_usuarios_treino, dict_test,_,dict_usuarios= prepare_dataset(num_clients=10)
 
+from graficos import plot_absolute_distribution
+
+plot_absolute_distribution(dict_usuarios,trainset=trainset)
