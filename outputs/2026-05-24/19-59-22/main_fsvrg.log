@@ -1,0 +1,60 @@
+[2026-05-24 19:59:22,973][flwr][WARNING] - DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[2026-05-24 19:59:22,975][flwr][INFO] - Starting Flower simulation, config: num_rounds=10, no round_timeout
+[2026-05-24 19:59:28,188][flwr][INFO] - Flower VCE: Ray initialized with resources: {'node:127.0.0.1': 1.0, 'GPU': 1.0, 'memory': 4238487143.0, 'accelerator_type:G': 1.0, 'object_store_memory': 1816494489.0, 'node:__internal_head__': 1.0, 'CPU': 8.0}
+[2026-05-24 19:59:28,189][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2026-05-24 19:59:28,189][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 1.0, 'num_gpus': 0.0}
+[2026-05-24 19:59:28,215][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 8 actors
+[2026-05-24 19:59:28,216][flwr][INFO] - [INIT]
+[2026-05-24 19:59:28,217][flwr][ERROR] - Missing key initialize_parameters
+    full_key: strategy.initialize_parameters
+    object_type=dict
+[2026-05-24 19:59:28,222][flwr][ERROR] - Traceback (most recent call last):
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\legacy_app.py", line 361, in start_simulation
+    hist = run_fl(
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\server\server.py", line 487, in run_fl
+    hist, elapsed_time = server.fit(
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\server\server.py", line 92, in fit
+    self.parameters = self._get_initial_parameters(server_round=0, timeout=timeout)
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\server\server.py", line 268, in _get_initial_parameters
+    parameters: Parameters | None = self.strategy.initialize_parameters(
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\omegaconf\dictconfig.py", line 355, in __getattr__
+    self._format_and_raise(
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\omegaconf\base.py", line 231, in _format_and_raise
+    format_and_raise(
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\omegaconf\_utils.py", line 899, in format_and_raise
+    _raise(ex, cause)
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\omegaconf\_utils.py", line 797, in _raise
+    raise ex.with_traceback(sys.exc_info()[2])  # set env var OC_CAUSE=1 for full trace
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\omegaconf\dictconfig.py", line 351, in __getattr__
+    return self._get_impl(
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\omegaconf\dictconfig.py", line 442, in _get_impl
+    node = self._get_child(
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\omegaconf\basecontainer.py", line 73, in _get_child
+    child = self._get_node(
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\omegaconf\dictconfig.py", line 480, in _get_node
+    raise ConfigKeyError(f"Missing key {key!s}")
+omegaconf.errors.ConfigAttributeError: Missing key initialize_parameters
+    full_key: strategy.initialize_parameters
+    object_type=dict
+
+[2026-05-24 19:59:28,225][flwr][ERROR] - Your simulation crashed :(. This could be because of several reasons. The most common are: 
+	 > Sometimes, issues in the simulation code itself can cause crashes. It's always a good idea to double-check your code for any potential bugs or inconsistencies that might be contributing to the problem. For example: 
+		 - You might be using a class attribute in your clients that hasn't been defined.
+		 - There could be an incorrect method call to a 3rd party library (e.g., PyTorch).
+		 - The return types of methods in your clients/strategies might be incorrect.
+	 > Your system couldn't fit a single VirtualClient: try lowering `client_resources`.
+	 > All the actors in your pool crashed. This could be because: 
+		 - You clients hit an out-of-memory (OOM) error and actors couldn't recover from it. Try launching your simulation with more generous `client_resources` setting (i.e. it seems {'num_cpus': 1.0, 'num_gpus': 0.0} is not enough for your run). Use fewer concurrent actors. 
+		 - You were running a multi-node simulation and all worker nodes disconnected. The head node might still be alive but cannot accommodate any actor with resources: {'num_cpus': 1.0, 'num_gpus': 0.0}.
+Take a look at the Flower simulation examples for guidance <https://flower.ai/docs/framework/how-to-run-simulations.html>.

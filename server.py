@@ -8,7 +8,7 @@ from collections import OrderedDict
 def get_on_fit_config(config: DictConfig):
     def fit_config_fn(server_round: int):
         
-        return {'lr':config.lr,'momentum':config.momentum,'local_epochs':config.local_epochs}
+        return {'lr':config.lr,'momentum':config.momentum,'local_epochs':config.local_epochs,"server_round": server_round}
     
 
     return fit_config_fn

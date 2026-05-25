@@ -1,0 +1,21 @@
+strategy:
+  strategy:
+    _target_: flwr.server.strategy.FedAvg
+    fraction_fit: 1.0
+    min_fit_clients: 10
+    fraction_evaluate: 1.0
+    min_evaluate_clients: 10
+    min_available_clients: 10
+  on_fit_config_fn:
+    _target_: server.get_on_fit_config
+    config: ${config_fit}
+num_rounds: 10
+num_clients: 10
+batch_size: 20
+num_clients_per_round_fit: 10
+num_clients_per_round_eval: 10
+num_classes: 10
+config_fit:
+  lr: 0.001
+  momentum: 0.9
+  local_epochs: 1

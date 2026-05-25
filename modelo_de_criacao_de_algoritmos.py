@@ -1,4 +1,14 @@
-class SuaNovaEstrategia(FedAvg):
+import flwr as fl
+from flwr.server.strategy import Strategy
+from flwr.common import FitRes, Parameters, ndarrays_to_parameters, parameters_to_ndarrays
+from typing import List, Tuple, Union
+import numpy as np
+
+
+
+
+
+class SuaNovaEstrategia(fl.server.strategy.FedAvg):
     def aggregate_fit(self, server_round, results, failures):
         
         # 1. PARTE UNIVERSAL: Extrair pesos e contagem de amostras
