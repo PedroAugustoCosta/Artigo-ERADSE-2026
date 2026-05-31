@@ -1,0 +1,52 @@
+[2026-05-31 12:24:28,599][flwr][WARNING] - DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[2026-05-31 12:24:28,600][flwr][INFO] - Starting Flower simulation, config: num_rounds=10, no round_timeout
+[2026-05-31 12:24:32,907][flwr][INFO] - Flower VCE: Ray initialized with resources: {'node:127.0.0.1': 1.0, 'GPU': 1.0, 'memory': 6145089127.0, 'node:__internal_head__': 1.0, 'accelerator_type:G': 1.0, 'object_store_memory': 2633609625.0, 'CPU': 8.0}
+[2026-05-31 12:24:32,907][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2026-05-31 12:24:32,907][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 1.0, 'num_gpus': 0.25}
+[2026-05-31 12:24:32,932][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 4 actors
+[2026-05-31 12:24:32,932][flwr][INFO] - [INIT]
+[2026-05-31 12:24:32,932][flwr][INFO] - Requesting initial parameters from one random client
+[2026-05-31 12:24:39,382][flwr][INFO] - Received initial parameters from one random client
+[2026-05-31 12:24:39,382][flwr][INFO] - Starting evaluation of initial global parameters
+[2026-05-31 12:24:43,047][flwr][INFO] - initial parameters (loss, other metrics): 182.2566840648651, {'accuracy': 0.063}
+[2026-05-31 12:24:43,047][flwr][INFO] - 
+[2026-05-31 12:24:43,047][flwr][INFO] - [ROUND 1]
+[2026-05-31 12:24:43,047][flwr][INFO] - configure_fit: strategy sampled 10 clients (out of 10)
+[2026-05-31 12:25:52,598][flwr][INFO] - aggregate_fit: received 10 results and 0 failures
+[2026-05-31 12:25:52,623][flwr][ERROR] - 'dict' object cannot be interpreted as an integer
+[2026-05-31 12:25:52,642][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\legacy_app.py", line 361, in start_simulation
+    hist = run_fl(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\server\server.py", line 487, in run_fl
+    hist, elapsed_time = server.fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\server\server.py", line 114, in fit
+    res_fit = self.fit_round(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\server\server.py", line 246, in fit_round
+    ] = self.strategy.aggregate_fit(server_round, results, failures)
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\strategies\adap.py", line 95, in aggregate_fit
+    weighting = calcular_ponderacao(lista_f_i,amostras_dos_clientes)
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\strategies\adap.py", line 140, in calcular_ponderacao
+    for i in range(f_i_values):
+TypeError: 'dict' object cannot be interpreted as an integer
+
+[2026-05-31 12:25:52,642][flwr][ERROR] - Your simulation crashed :(. This could be because of several reasons. The most common are: 
+	 > Sometimes, issues in the simulation code itself can cause crashes. It's always a good idea to double-check your code for any potential bugs or inconsistencies that might be contributing to the problem. For example: 
+		 - You might be using a class attribute in your clients that hasn't been defined.
+		 - There could be an incorrect method call to a 3rd party library (e.g., PyTorch).
+		 - The return types of methods in your clients/strategies might be incorrect.
+	 > Your system couldn't fit a single VirtualClient: try lowering `client_resources`.
+	 > All the actors in your pool crashed. This could be because: 
+		 - You clients hit an out-of-memory (OOM) error and actors couldn't recover from it. Try launching your simulation with more generous `client_resources` setting (i.e. it seems {'num_cpus': 1.0, 'num_gpus': 0.25} is not enough for your run). Use fewer concurrent actors. 
+		 - You were running a multi-node simulation and all worker nodes disconnected. The head node might still be alive but cannot accommodate any actor with resources: {'num_cpus': 1.0, 'num_gpus': 0.25}.
+Take a look at the Flower simulation examples for guidance <https://flower.ai/docs/framework/how-to-run-simulations.html>.

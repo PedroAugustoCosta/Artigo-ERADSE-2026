@@ -34,7 +34,7 @@ def train(net, trainloader, optimizer, epochs, device):
             loss.backward()
             optimizer.step()
             epoch_loss += loss.item()
-        
+    print(f"Treinando cliente  Loss: {loss}")
 
 def test(net, testloader, device: str):
     """Validate the network on the entire test set."""

@@ -1,0 +1,1716 @@
+[2026-05-30 19:27:53,660][flwr][WARNING] - DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[2026-05-30 19:27:53,660][flwr][INFO] - Starting Flower simulation, config: num_rounds=10, no round_timeout
+[2026-05-30 19:27:57,960][flwr][INFO] - Flower VCE: Ray initialized with resources: {'object_store_memory': 2467479552.0, 'GPU': 1.0, 'memory': 5757452288.0, 'accelerator_type:G': 1.0, 'node:127.0.0.1': 1.0, 'node:__internal_head__': 1.0, 'CPU': 8.0}
+[2026-05-30 19:27:57,960][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2026-05-30 19:27:57,960][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 1.0, 'num_gpus': 0.25}
+[2026-05-30 19:27:57,981][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 4 actors
+[2026-05-30 19:27:57,984][flwr][INFO] - [INIT]
+[2026-05-30 19:27:57,984][flwr][INFO] - Requesting initial parameters from one random client
+[2026-05-30 19:28:04,610][flwr][INFO] - Received initial parameters from one random client
+[2026-05-30 19:28:04,610][flwr][INFO] - Starting evaluation of initial global parameters
+[2026-05-30 19:28:08,334][flwr][INFO] - initial parameters (loss, other metrics): 182.0951566696167, {'accuracy': 0.1029}
+[2026-05-30 19:28:08,334][flwr][INFO] - 
+[2026-05-30 19:28:08,334][flwr][INFO] - [ROUND 1]
+[2026-05-30 19:28:08,334][flwr][INFO] - configure_fit: strategy sampled 10 clients (out of 10)
+[2026-05-30 19:28:30,450][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:28:30,450][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:28:33,010][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:28:33,010][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:28:45,294][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:28:45,294][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:28:46,434][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:28:46,434][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:28:50,960][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:28:50,960][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:28:55,884][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:28:55,884][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:29:02,300][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:29:02,300][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:29:06,411][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:29:06,411][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:29:07,310][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:29:07,310][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:29:16,560][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:29:16,560][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:29:16,560][flwr][INFO] - aggregate_fit: received 0 results and 10 failures
+[2026-05-30 19:29:20,075][flwr][INFO] - fit progress: (1, 182.0951566696167, {'accuracy': 0.1029}, 71.73507560000007)
+[2026-05-30 19:29:20,075][flwr][INFO] - configure_evaluate: strategy sampled 10 clients (out of 10)
+[2026-05-30 19:29:25,750][flwr][INFO] - aggregate_evaluate: received 10 results and 0 failures
+[2026-05-30 19:29:25,750][flwr][WARNING] - No evaluate_metrics_aggregation_fn provided
+[2026-05-30 19:29:25,751][flwr][INFO] - 
+[2026-05-30 19:29:25,751][flwr][INFO] - [ROUND 2]
+[2026-05-30 19:29:25,751][flwr][INFO] - configure_fit: strategy sampled 10 clients (out of 10)
+[2026-05-30 19:29:42,420][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:29:42,420][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:29:50,085][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:29:50,085][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:29:52,544][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:29:52,544][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:29:56,560][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:29:56,561][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:30:12,142][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:30:12,142][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:30:14,162][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:30:14,163][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:30:15,234][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:30:15,234][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12320, ip=127.0.0.1, actor_id=bd6f478baca2e197d66c92e701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC50>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:30:25,298][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:30:25,299][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13676, ip=127.0.0.1, actor_id=daafde41ecaec6b1935b5ee801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:30:25,345][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:30:25,346][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13220, ip=127.0.0.1, actor_id=c8e94dd07383933578ddb85901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:30:32,035][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+[2026-05-30 19:30:32,035][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 133, in handle_legacy_message_from_msgtype
+    out_recorddict = fitres_to_recorddict(fit_res, keep_input=False)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\recorddict_compat.py", line 233, in fitres_to_recorddict
+    recorddict.config_records[f"{res_str}.metrics"] = ConfigRecord(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 135, in __init__
+    self[k] = config_dict[k]
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\typeddict.py", line 48, in __setitem__
+    cast(Callable[[V], None], self.__dict__["_check_value_fn"])(value)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 63, in _check_value
+    is_valid(value[0])
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\common\record\configrecord.py", line 51, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10164, ip=127.0.0.1, actor_id=af3b462ccf0b4e7ae6007bd601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9FECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `int | float | str | bytes | bool | list[int] | list[float] | list[str] | list[bytes] | list[bool]` but `<class 'list'>` was passed.
+[2026-05-30 19:30:32,036][flwr][INFO] - aggregate_fit: received 0 results and 10 failures
+[2026-05-30 19:30:35,672][flwr][INFO] - fit progress: (2, 182.0951566696167, {'accuracy': 0.1029}, 147.32668890000014)
+[2026-05-30 19:30:35,672][flwr][INFO] - configure_evaluate: strategy sampled 10 clients (out of 10)
