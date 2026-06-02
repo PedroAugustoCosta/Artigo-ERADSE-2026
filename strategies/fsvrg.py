@@ -5,7 +5,7 @@ from flwr.server.client_manager import ClientManager
 from typing import Optional, Dict, List, Tuple, Union
 import numpy as np
 from flwr.server.strategy.aggregate import aggregate
-# A estratégia deve herdar explicitamente, mas vamos garantir os métodos obrigatórios
+
 class AlgoritmoFSVRG(FedAvg):
     def __init__(self, learning_rate=0.01, snapshot_frequency=10, **kwargs):
         fedavg_params = {
@@ -17,13 +17,13 @@ class AlgoritmoFSVRG(FedAvg):
         }
         super().__init__(**fedavg_params)
         
-        # 3. Inicializa os seus parâmetros customizados
+       
         self.learning_rate = learning_rate
         self.snapshot_frequency = snapshot_frequency
         self.global_grad = None
         self.w_t = None
 
-    # Forçar a implementação do initialize_parameters para evitar a busca no Hydra
+   
     def initialize_parameters(self, client_manager: ClientManager) -> Optional[Parameters]:
         return None
 
@@ -31,26 +31,26 @@ class AlgoritmoFSVRG(FedAvg):
         return super().num_fit_clients(num_available_clients)
 
     def configure_fit(self, server_round, parameters, client_manager):
-        # 1. Define se é snapshot
+   
         is_snapshot = (server_round % self.snapshot_frequency == 0)
         print(f"[SERVER] Enviando global_grad com len: {len(self.global_grad) if self.global_grad else 0}")
         
-        # 2. Se for snapshot, congela o modelo atual (w_t)
+      
         if is_snapshot:
             self.w_t = parameters_to_ndarrays(parameters)
             print(f"\n[FSVRG] Rodada {server_round}: Iniciando Snapshot.")
         
-        # 3. Converte os pesos para preparar o envio
+   
         pesos_atuais = parameters_to_ndarrays(parameters)
         
-        # 4. Se tivermos gradiente global, concatena para enviar ao cliente (redução de variância)
+      
         if self.global_grad is not None:
             params_com_gradiente = pesos_atuais + self.global_grad
             parametros_a_enviar = ndarrays_to_parameters(params_com_gradiente)
         else:
             parametros_a_enviar = parameters
 
-        # 5. Configura o fit dos clientes
+   
         configs = super().configure_fit(server_round, parametros_a_enviar, client_manager)
         
         for _, fit_ins in configs:

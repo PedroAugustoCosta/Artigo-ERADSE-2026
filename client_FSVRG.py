@@ -59,22 +59,21 @@ class FlowerCliente(fl.client.NumPyClient):
     def fit(self, parameters, config):
         from flwr.common import parameters_to_ndarrays
         
-        # 1. Obter pesos atuais para saber o tamanho correto da divisão
-        # Isso evita depender de len(list) // 2
+        
         pesos_referencia = self.get_parameters(config={})
         num_pesos = len(pesos_referencia)
         
-        # 2. Converter e separar
+        
         params_longos = parameters if isinstance(parameters, list) else parameters_to_ndarrays(parameters)
         
-        # Separação segura
-        pesos_modelo = params_longos[:num_pesos]
-        grad_global = params_longos[num_pesos:] # Se não houver gradiente, isto será uma lista vazia []
         
-        # 3. Aplicar pesos ao modelo
+        pesos_modelo = params_longos[:num_pesos]
+        grad_global = params_longos[num_pesos:] 
+        
+        
         self.set_parameters(pesos_modelo)
         
-        # AGORA a variável 'pesos_modelo' existe com certeza.
+        
         print(f"[CLIENT {self.cid}] Norma pesos: {np.linalg.norm(pesos_modelo[0]) if len(pesos_modelo) > 0 else 0}")
         
         is_snapshot = config.get("is_snapshot", False)
@@ -84,10 +83,10 @@ class FlowerCliente(fl.client.NumPyClient):
             return ndarrays_to_parameters(self.grad_snapshot_local), len(self.trainloader.dataset), {"is_snapshot": True}
         
         else:
-            # Treino normal (agora usa o grad_global que pode estar vazio)
+            
             optim = torch.optim.SGD(self.model.parameters(), lr=config['lr'])
             
-            # Se grad_global estiver vazio, passamos uma lista de zeros com o formato dos pesos
+            
             if len(grad_global) == 0:
                 grad_global = [np.zeros_like(p) for p in pesos_modelo]
                 
@@ -121,7 +120,7 @@ def train_fsvrg(model, trainloader, optim, epochs, device, grad_global, grad_sna
     model.train()
     model.to(device)
     
-    # Debug: Verificar se gradientes estão presentes
+    
     if not grad_global: 
         grad_global = [np.zeros_like(p.detach().cpu().numpy()) for p in model.parameters()]
         
@@ -137,16 +136,16 @@ def train_fsvrg(model, trainloader, optim, epochs, device, grad_global, grad_sna
             loss = torch.nn.functional.cross_entropy(outputs, labels)
             loss.backward()
             
-            # Debug: Norma do gradiente antes da correção
+           
             norma_antes = torch.norm(list(model.parameters())[0].grad)
             
-            # Correção FSVRG
+            
             for param, snap, glob in zip(model.parameters(), g_snap, g_glob):
                 if param.grad is not None:
                     param.grad = param.grad - snap + glob
             
             optim.step()
             
-            # Debug: Norma após correção
+            
             norma_depois = torch.norm(list(model.parameters())[0].grad)
-            # print(f"Norma antes/depois: {norma_antes:.4f} / {norma_depois:.4f}")
+            print(f"Norma antes/depois: {norma_antes:.4f} / {norma_depois:.4f}")
