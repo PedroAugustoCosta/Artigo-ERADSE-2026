@@ -1,0 +1,1930 @@
+[2026-06-05 10:03:19,387][flwr][WARNING] - DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[2026-06-05 10:03:19,388][flwr][INFO] - Starting Flower simulation, config: num_rounds=10, no round_timeout
+[2026-06-05 10:03:23,829][flwr][INFO] - Flower VCE: Ray initialized with resources: {'object_store_memory': 2069886566.0, 'GPU': 1.0, 'memory': 4829735322.0, 'accelerator_type:G': 1.0, 'node:__internal_head__': 1.0, 'node:127.0.0.1': 1.0, 'CPU': 8.0}
+[2026-06-05 10:03:23,829][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2026-06-05 10:03:23,829][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 1.0, 'num_gpus': 0.25}
+[2026-06-05 10:03:23,851][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 4 actors
+[2026-06-05 10:03:23,851][flwr][INFO] - [INIT]
+[2026-06-05 10:03:23,852][flwr][INFO] - Requesting initial parameters from one random client
+[2026-06-05 10:03:31,394][flwr][INFO] - Received initial parameters from one random client
+[2026-06-05 10:03:31,394][flwr][INFO] - Starting evaluation of initial global parameters
+[2026-06-05 10:03:35,138][flwr][INFO] - initial parameters (loss, other metrics): 182.12893438339233, {'accuracy': 0.122}
+[2026-06-05 10:03:35,138][flwr][INFO] - 
+[2026-06-05 10:03:35,139][flwr][INFO] - [ROUND 1]
+[2026-06-05 10:03:35,139][flwr][INFO] - configure_fit: strategy sampled 10 clients (out of 10)
+[2026-06-05 10:04:06,318][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '8'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '8'
+
+[2026-06-05 10:04:06,319][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '8'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '8'
+[2026-06-05 10:04:38,092][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '9'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '9'
+
+[2026-06-05 10:04:38,093][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '9'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '9'
+[2026-06-05 10:04:45,063][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '0'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '0'
+
+[2026-06-05 10:04:45,064][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '0'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '0'
+[2026-06-05 10:04:46,016][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '4'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '4'
+
+[2026-06-05 10:04:46,017][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '4'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '4'
+[2026-06-05 10:04:55,300][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '2'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '2'
+
+[2026-06-05 10:04:55,301][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '2'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '2'
+[2026-06-05 10:05:15,684][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '3'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '3'
+
+[2026-06-05 10:05:15,685][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '3'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '3'
+[2026-06-05 10:05:19,455][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '1'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '1'
+
+[2026-06-05 10:05:19,456][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '1'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '1'
+[2026-06-05 10:05:30,095][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '7'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '7'
+
+[2026-06-05 10:05:30,096][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '7'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '7'
+[2026-06-05 10:05:31,114][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '6'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '6'
+
+[2026-06-05 10:05:31,114][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '6'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '6'
+[2026-06-05 10:05:59,482][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '5'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '5'
+
+[2026-06-05 10:05:59,483][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 52, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+KeyError: '5'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '5'
+[2026-06-05 10:05:59,484][flwr][INFO] - aggregate_fit: received 0 results and 10 failures
+[2026-06-05 10:06:03,139][flwr][INFO] - fit progress: (1, 182.12893438339233, {'accuracy': 0.122}, 147.99958079999942)
+[2026-06-05 10:06:03,139][flwr][INFO] - configure_evaluate: strategy sampled 10 clients (out of 10)
+[2026-06-05 10:06:08,650][flwr][INFO] - aggregate_evaluate: received 10 results and 0 failures
+[2026-06-05 10:06:08,650][flwr][WARNING] - No evaluate_metrics_aggregation_fn provided
+[2026-06-05 10:06:08,651][flwr][INFO] - 
+[2026-06-05 10:06:08,651][flwr][INFO] - [ROUND 2]
+[2026-06-05 10:06:08,651][flwr][INFO] - configure_fit: strategy sampled 10 clients (out of 10)
+[2026-06-05 10:06:40,535][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '8'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '8'
+
+[2026-06-05 10:06:40,536][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '8'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '8'
+[2026-06-05 10:06:58,454][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '7'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '7'
+
+[2026-06-05 10:06:58,455][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '7'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '7'
+[2026-06-05 10:07:01,527][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '2'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '2'
+
+[2026-06-05 10:07:01,527][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '2'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '2'
+[2026-06-05 10:07:09,018][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '9'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '9'
+
+[2026-06-05 10:07:09,019][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '9'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '9'
+[2026-06-05 10:07:43,901][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '3'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '3'
+
+[2026-06-05 10:07:43,901][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '3'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '3'
+[2026-06-05 10:07:48,232][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '4'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '4'
+
+[2026-06-05 10:07:48,232][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '4'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '4'
+[2026-06-05 10:07:52,897][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '5'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '5'
+
+[2026-06-05 10:07:52,897][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '5'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '5'
+[2026-06-05 10:08:10,623][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '0'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '0'
+
+[2026-06-05 10:08:10,623][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '0'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '0'
+[2026-06-05 10:08:10,634][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '1'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '1'
+
+[2026-06-05 10:08:10,634][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '1'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '1'
+[2026-06-05 10:08:23,858][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '6'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '6'
+
+[2026-06-05 10:08:23,858][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+    'Dt': MEMORIA_DOS_CLIENTES[self.cid]['Dt'],
+KeyError: '6'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '6'
+[2026-06-05 10:08:23,859][flwr][INFO] - aggregate_fit: received 0 results and 10 failures
+[2026-06-05 10:08:27,481][flwr][INFO] - fit progress: (2, 182.12893438339233, {'accuracy': 0.122}, 292.34281759999976)
+[2026-06-05 10:08:27,482][flwr][INFO] - configure_evaluate: strategy sampled 10 clients (out of 10)
+[2026-06-05 10:08:33,007][flwr][INFO] - aggregate_evaluate: received 10 results and 0 failures
+[2026-06-05 10:08:33,007][flwr][INFO] - 
+[2026-06-05 10:08:33,008][flwr][INFO] - [ROUND 3]
+[2026-06-05 10:08:33,008][flwr][INFO] - configure_fit: strategy sampled 10 clients (out of 10)
+[2026-06-05 10:09:05,440][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+KeyError: '8'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '8'
+
+[2026-06-05 10:09:05,441][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+KeyError: '8'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '8'
+[2026-06-05 10:09:14,536][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+KeyError: '3'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '3'
+
+[2026-06-05 10:09:14,547][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+KeyError: '3'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12172, ip=127.0.0.1, actor_id=6479dae034b7609c0b6f322801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '3'
+[2026-06-05 10:09:30,539][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+KeyError: '1'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '1'
+
+[2026-06-05 10:09:30,540][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+KeyError: '1'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=6780, ip=127.0.0.1, actor_id=e186fab5f38fe30ba7898a2e01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '1'
+[2026-06-05 10:09:34,981][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+KeyError: '0'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '0'
+
+[2026-06-05 10:09:34,982][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+KeyError: '0'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=14244, ip=127.0.0.1, actor_id=3295dad1ec5d4086bb7844a001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0ECB0>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '0'
+[2026-06-05 10:09:36,795][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+KeyError: '4'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '4'
+
+[2026-06-05 10:09:36,796][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 63, in fit
+KeyError: '4'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3552, ip=127.0.0.1, actor_id=b38f9f1bb3e26bd1de2316b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA0EC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: '4'

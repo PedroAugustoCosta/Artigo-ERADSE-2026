@@ -1,9 +1,9 @@
 ---
 
 _target_: flwr.server.strategy.FedProx
-fraction_fit: 1.0
-min_fit_clients: 10
-fraction_evaluate: 1.0
-min_evaluate_clients: 10
+fraction_fit: 1.0            # Alterar de 1.0e-05 para 1.0
+min_fit_clients: 10          # Alterar para o número total de clientes (ou igual ao num_clients)
+fraction_evaluate: 1.0       # Alterar para 1.0
+min_evaluate_clients: 10     # Alterar para o número total de clientes
 min_available_clients: 10
 proximal_mu: 0.1

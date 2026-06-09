@@ -6,6 +6,19 @@ from flwr.common import NDArrays, Scalar
 from typing import Dict
 import numpy as np
 import json
+from scipy.stats import wasserstein_distance
+import os
+def ler_memoria(cid):
+    arquivo = f"memoria_cliente_{cid}.json"
+    if os.path.exists(arquivo):
+        with open(arquivo, 'r') as f:
+            return json.load(f)
+    return {'Dt': 0.0, 'Df': 0.0}
+
+def salvar_memoria(cid, memoria_dict):
+    arquivo = f"memoria_cliente_{cid}.json"
+    with open(arquivo, 'w') as f:
+        json.dump(memoria_dict, f)
 class FlowerCliente(fl.client.NumPyClient):
     def __init__(self, trainloader, valloader, num_classes, cid):
         super().__init__()
@@ -18,6 +31,8 @@ class FlowerCliente(fl.client.NumPyClient):
         self.ultima_acuracia_global = 0.0
         self.ultimos_pesos_pk = None 
         self.beta = 0.02
+        self.cached_Dt = 0.0
+        self.cached_Df = 0.0
     def set_parameters(self, parameters):
         params_dict = zip(self.model.state_dict().keys(), parameters)
         state_dict = OrderedDict({k: torch.tensor(v) for k, v in params_dict})
@@ -27,7 +42,8 @@ class FlowerCliente(fl.client.NumPyClient):
         return [val.cpu().numpy() for _, val in self.model.state_dict().items()]
     
     def fit(self, parameters, config):
-            initial_weights = [param.detach().clone() for param in self.model.parameters()]
+            peso_global_ultima_camada = parameters[-1]
+            
             self.set_parameters(parameters=parameters)
             self.model.to(self.device)
             
@@ -35,12 +51,28 @@ class FlowerCliente(fl.client.NumPyClient):
             
             train(self.model, self.trainloader, optim, config['local_epochs'], self.device)
             loss, accuracy = test(self.model, self.valloader, self.device)
-            histograma = get_distribuicao_percentual(self.trainloader,self.num_classes)
             
-            
-            return self.get_parameters(config={}), len(self.trainloader.dataset), {"histograma": json.dumps(histograma.tolist()),
-                                                                                   "accuracy": accuracy}
-
+            is_first_round = config.get('is_first_round',False)
+            mudanca_model= config.get('recompute_df',False)
+            memoria = ler_memoria(self.cid)
+            if is_first_round:
+                histograma = get_distribuicao_percentual(self.trainloader, self.num_classes)
+                distribuicao_ideal = np.ones(self.num_classes) / self.num_classes
+                
+                memoria['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+                
+                pesos_treinados = self.get_parameters(config={})
+                memoria['Df'] = float(np.linalg.norm(peso_global_ultima_camada - pesos_treinados[-1]))
+            elif mudanca_model:
+                pesos_treinados = self.get_parameters(config={})
+                memoria['Df'] = float(np.linalg.norm(peso_global_ultima_camada - pesos_treinados[-1]))
+                
+            # Retorna recuperando os dados sãos e salvos da memória global
+            return self.get_parameters(config={}), len(self.trainloader.dataset), {
+                    'Dt': memoria['Dt'],
+                    'Df': memoria['Df'],
+                    'accuracy': float(accuracy)
+                }
     def evaluate(self, parameters: NDArrays, config: Dict[str, Scalar]):
         self.set_parameters(parameters)
         self.model.to(self.device)

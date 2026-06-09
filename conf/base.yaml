@@ -5,14 +5,14 @@ defaults:
   - strategy: fedavg  # <--- Isto registra o grupo 'strategy'
   - _self_            # <--- Isto garante que o resto do arquivo seja lido
 
-num_rounds: 10
+num_rounds: 50
 num_clients: 10
-batch_size: 20
-num_clients_per_round_fit: 10 # Aumente para 10 para usar todos os clientes
-num_clients_per_round_eval: 10 # Aumente para 10
+batch_size: 32
+num_clients_per_round_fit: 5 # Aumente para 10 para usar todos os clientes
+num_clients_per_round_eval: 5 # Aumente para 10
 num_classes: 10
 config_fit:
   lr: 0.01
   momentum: 0.9
-  local_epochs: 10
+  local_epochs: 5
 

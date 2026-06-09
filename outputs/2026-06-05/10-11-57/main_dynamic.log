@@ -1,0 +1,405 @@
+[2026-06-05 10:11:57,652][flwr][WARNING] - DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[2026-06-05 10:11:57,654][flwr][INFO] - Starting Flower simulation, config: num_rounds=10, no round_timeout
+[2026-06-05 10:12:02,011][flwr][INFO] - Flower VCE: Ray initialized with resources: {'object_store_memory': 2114453913.0, 'GPU': 1.0, 'memory': 4933725799.0, 'accelerator_type:G': 1.0, 'node:__internal_head__': 1.0, 'node:127.0.0.1': 1.0, 'CPU': 8.0}
+[2026-06-05 10:12:02,011][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2026-06-05 10:12:02,011][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 1.0, 'num_gpus': 0.25}
+[2026-06-05 10:12:02,030][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 4 actors
+[2026-06-05 10:12:02,031][flwr][INFO] - [INIT]
+[2026-06-05 10:12:02,031][flwr][INFO] - Requesting initial parameters from one random client
+[2026-06-05 10:12:09,885][flwr][INFO] - Received initial parameters from one random client
+[2026-06-05 10:12:09,885][flwr][INFO] - Starting evaluation of initial global parameters
+[2026-06-05 10:12:13,625][flwr][INFO] - initial parameters (loss, other metrics): 182.09226942062378, {'accuracy': 0.0852}
+[2026-06-05 10:12:13,626][flwr][INFO] - 
+[2026-06-05 10:12:13,626][flwr][INFO] - [ROUND 1]
+[2026-06-05 10:12:13,626][flwr][INFO] - configure_fit: strategy sampled 10 clients (out of 10)
+[2026-06-05 10:12:44,353][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13536, ip=127.0.0.1, actor_id=f5320b083e2a77523ad1011601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 62, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+NameError: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13536, ip=127.0.0.1, actor_id=f5320b083e2a77523ad1011601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+[2026-06-05 10:12:44,354][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13536, ip=127.0.0.1, actor_id=f5320b083e2a77523ad1011601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 62, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+NameError: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13536, ip=127.0.0.1, actor_id=f5320b083e2a77523ad1011601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'MEMORIA_DOS_CLIENTES' is not defined
+[2026-06-05 10:13:16,920][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2016, ip=127.0.0.1, actor_id=43f03644a236c4cdc0ee065c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA1EC50>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 62, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+NameError: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2016, ip=127.0.0.1, actor_id=43f03644a236c4cdc0ee065c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA1EC50>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+[2026-06-05 10:13:16,921][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2016, ip=127.0.0.1, actor_id=43f03644a236c4cdc0ee065c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA1EC50>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 62, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+NameError: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2016, ip=127.0.0.1, actor_id=43f03644a236c4cdc0ee065c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000DA1EC50>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'MEMORIA_DOS_CLIENTES' is not defined
+[2026-06-05 10:13:23,747][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=1120, ip=127.0.0.1, actor_id=1159388fed3d45cb688e7dfb01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 62, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+NameError: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1120, ip=127.0.0.1, actor_id=1159388fed3d45cb688e7dfb01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+[2026-06-05 10:13:23,825][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=1120, ip=127.0.0.1, actor_id=1159388fed3d45cb688e7dfb01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 62, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+NameError: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1120, ip=127.0.0.1, actor_id=1159388fed3d45cb688e7dfb01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'MEMORIA_DOS_CLIENTES' is not defined
+[2026-06-05 10:13:24,319][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=716, ip=127.0.0.1, actor_id=1d756c933a4ad2558a82880001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 62, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+NameError: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=716, ip=127.0.0.1, actor_id=1d756c933a4ad2558a82880001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+[2026-06-05 10:13:24,319][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=716, ip=127.0.0.1, actor_id=1d756c933a4ad2558a82880001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC20>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 62, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+NameError: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=716, ip=127.0.0.1, actor_id=1d756c933a4ad2558a82880001000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC20>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'MEMORIA_DOS_CLIENTES' is not defined
+[2026-06-05 10:13:32,906][flwr][ERROR] - Traceback (most recent call last):
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 90, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 400, in get_client_result
+    return self._fetch_future_result(cid)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 281, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13536, ip=127.0.0.1, actor_id=f5320b083e2a77523ad1011601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 62, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+NameError: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13536, ip=127.0.0.1, actor_id=f5320b083e2a77523ad1011601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+[2026-06-05 10:13:32,907][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13536, ip=127.0.0.1, actor_id=f5320b083e2a77523ad1011601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\clientapp\client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\client.py", line 224, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\client\numpy_client.py", line 227, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "D:\PROGRAMACAO\ML\FL\Modelo_teste\client_dynamic.py", line 62, in fit
+    MEMORIA_DOS_CLIENTES[self.cid]['Dt'] = float(wasserstein_distance(histograma, distribuicao_ideal))
+NameError: name 'MEMORIA_DOS_CLIENTES' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13536, ip=127.0.0.1, actor_id=f5320b083e2a77523ad1011601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000000000D9EEC80>)
+  File "python\\ray\\_raylet.pyx", line 1982, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 2093, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1989, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1932, in ray._raylet.execute_task.function_executor
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\_private\function_manager.py", line 693, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\ray\util\tracing\tracing_helper.py", line 461, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "d:\PROGRAMACAO\ML\FL\Modelo_teste\env\lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 65, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.clientapp.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'MEMORIA_DOS_CLIENTES' is not defined

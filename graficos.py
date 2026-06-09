@@ -53,7 +53,8 @@ import numpy as np
 def plot_absolute_distribution(dict_usuarios, trainset):
     """
     Gera um gráfico de barras empilhadas onde a altura é a quantidade total 
-    de dados (6000) e as cores representam a distribuição das classes.
+    de dados e as cores representam a distribuição das classes.
+    Adiciona o valor total no topo de cada barra e o Total Global no gráfico.
     """
     num_clients = len(dict_usuarios)
     # Criamos a matriz de contagem: Clientes (linhas) x Classes (colunas)
@@ -72,18 +73,93 @@ def plot_absolute_distribution(dict_usuarios, trainset):
                       columns=[f'Digit {i}' for i in range(10)])
 
     # Plotar gráfico de barras empilhadas (Stacked Bar Chart)
-    # Note: removi a linha que transformava em porcentagem
-    ax = df.plot(kind='bar', stacked=True, figsize=(12, 7), colormap="tab10", edgecolor="white")
+    ax = df.plot(kind='bar', stacked=True, figsize=(14, 8), colormap="tab10", edgecolor="white")
 
-    plt.title("Quantidade Total de Dados por Cliente e Distribuição de Classes", fontsize=14)
-    plt.xlabel("Clientes", fontsize=12)
-    plt.ylabel("Quantidade de Imagens (MNIST)", fontsize=12)
-    plt.legend(title="Classes", loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.title("Quantidade Total de Dados por Cliente e Distribuição de Classes", fontsize=16, pad=20)
+    plt.xlabel("Clientes", fontsize=14)
+    plt.ylabel("Quantidade de Imagens (MNIST)", fontsize=14)
     
-    # Adicionar uma linha guia no 6000 para confirmar a consistência
-    plt.axhline(y=6000, color='red', linestyle='--', alpha=0.3, label="Meta 6k")
+    # Legenda fora do gráfico à direita
+    plt.legend(title="Classes", loc='center left', bbox_to_anchor=(1.02, 0.5))
+    
+    # (Linha guia vermelha tracejada removida daqui)
+  
+    
+    print("Gráfico salvo com sucesso na pasta 'resultados_graficos'!")
+    # ---------------------------------------------------------
+    # CÁLCULOS DOS TOTAIS
+    # ---------------------------------------------------------
+    totais_por_cliente = df.sum(axis=1)
+    total_geral = totais_por_cliente.sum() # Soma de todos os clientes
+    
+    # Textos com os totais no topo das barras
+    for i, total in enumerate(totais_por_cliente):
+        ax.text(i, total + 100, f'{int(total)}', ha='center', va='bottom', fontsize=11, fontweight='bold', color='black')
+
+    # ---------------------------------------------------------
+    # CAIXA DE TEXTO COM O TOTAL GLOBAL (MOVIDA PARA A DIREITA)
+    # ---------------------------------------------------------
+    texto_total = f'Total Global de Dados: {int(total_geral)} amostras'
+    
+    # Estilo da caixinha (fundo amarelo claro, borda laranja)
+    props_caixa = dict(boxstyle='round,pad=0.5', facecolor='lightyellow', edgecolor='orange', alpha=0.9)
+    
+    # Posiciona a caixa no canto superior direito (x=0.98, y=0.96)
+    # horizontalalignment='right' garante que a caixa cresça para a esquerda, não invadindo a legenda
+    ax.text(0.98, 0.96, texto_total, transform=ax.transAxes, fontsize=13,
+            verticalalignment='top', horizontalalignment='right', 
+            bbox=props_caixa, fontweight='bold', color='darkred')
+
     
     plt.grid(axis='y', linestyle=':', alpha=0.6)
     plt.tight_layout()
+    os.makedirs("resultados_graficos", exist_ok=True)
+    plt.savefig("resultados_graficos/distribuicao_non_iid.png", dpi=300, bbox_inches='tight')
+    plt.savefig("resultados_graficos/distribuicao_non_iid.pdf", bbox_inches='tight') # Formato vetorial perfeito para Latex/Overleaf
+
+
+
+import matplotlib.pyplot as plt
+import json
+import os
+
+def plot_all_strategies(results_dir="."):
+    # Lista de arquivos para carregar (ajuste os nomes conforme seus arquivos salvos)
+    strategy_files = {
+        "FedAvg": "resultados_FedAvg.json",
+        "FedDynamic": "resultados_AlgoritmoFedDynamic.json",
+        "FSVRG": "resultados_AlgoritmoFSVRG3.json",
+        "CO-OP": "resultados_AlgoritmoCOOP.json",
+        "FedAdp": "resultados_AlgoritmoFedADAP.json",
+        "fedprox": "resultados_FedProx.json"
+    }
+
+    plt.figure(figsize=(10, 6))
+    cores = {
+    "FedAvg": "blue",
+    "FedDynamic": "red",
+    "FSVRG": "green",
+    "CO-OP": "orange",
+    "FedAdp": "purple",
+    "fedprox": "gray"
+}
+    plt.style.use('seaborn-v0_8-paper') # Estilo limpo e profissional
+    plt.rcParams.update({'font.size': 12}) # Fonte maior para leitura fácil
+    for name, filename in strategy_files.items():
+        if os.path.exists(filename):
+            with open(filename, "r") as f:
+                data = json.load(f)
+                # O eixo X é o número de rounds
+                rounds = range(1, len(data["accuracy"]) + 1)
+                plt.plot(rounds, data["accuracy"], marker='o', label=name, color=cores.get(name, 'black'))
+
+    plt.title("Convergência: Acurácia por Round de Comunicação", fontsize=14)
+    plt.xlabel("Communication Rounds", fontsize=12)
+    plt.ylabel("Test Accuracy", fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig("comparativo_algoritmos.png")
     plt.show()
 
+plot_all_strategies()

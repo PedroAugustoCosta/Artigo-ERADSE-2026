@@ -2,9 +2,9 @@
 
 
 _target_: strategies.coop.AlgoritmoCOOP
-fraction_fit: 0.5
-min_fit_clients: 2
-fraction_evaluate: 1.0
-min_evaluate_clients: 10
-min_available_clients: 10
+fraction_fit: 1.0            # Alterar de 1.0e-05 para 1.0
+min_fit_clients: 3        # Alterar para o número total de clientes (ou igual ao num_clients)
+fraction_evaluate: 1.0       # Alterar para 1.0
+min_evaluate_clients: 3     # Alterar para o número total de clientes
+min_available_clients: 3
 taxa_aprendizado_global: 1.0

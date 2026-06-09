@@ -1,0 +1,20 @@
+strategy:
+  _target_: strategies.fsvrg.AlgoritmoFSVRG
+  learning_rate: 0.005
+  snapshot_frequency: 2
+  fraction_fit: 1.0
+  fraction_evaluate: 1.0
+  min_fit_clients: 10
+  min_evaluate_clients: 10
+  min_available_clients: 10
+  num_rounds: 10
+num_rounds: 100
+num_clients: 10
+batch_size: 32
+num_clients_per_round_fit: 10
+num_clients_per_round_eval: 10
+num_classes: 10
+config_fit:
+  lr: 0.003
+  momentum: 0.0
+  local_epochs: 2

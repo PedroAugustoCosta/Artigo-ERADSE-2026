@@ -7,6 +7,20 @@ from typing import Dict
 from flwr.common import parameters_to_ndarrays, ndarrays_to_parameters
 
 import numpy as np
+import pickle
+import os
+def salvar_snapshot(cid, gradiente):
+    # Salva as matrizes do gradiente em um arquivo físico
+    with open(f"snapshot_cliente_{cid}.pkl", "wb") as f:
+        pickle.dump(gradiente, f)
+
+def carregar_snapshot(cid):
+    # Lê as matrizes do gradiente do arquivo físico
+    arquivo = f"snapshot_cliente_{cid}.pkl"
+    if os.path.exists(arquivo):
+        with open(arquivo, "rb") as f:
+            return pickle.load(f)
+    return None
 class FlowerCliente(fl.client.NumPyClient):
     def __init__(self, trainloader, valloader, num_classes, cid):
         super().__init__()
@@ -73,14 +87,20 @@ class FlowerCliente(fl.client.NumPyClient):
         
         self.set_parameters(pesos_modelo)
         
-        
+        grad_snapshot_local = carregar_snapshot(self.cid)
         print(f"[CLIENT {self.cid}] Norma pesos: {np.linalg.norm(pesos_modelo[0]) if len(pesos_modelo) > 0 else 0}")
         
         is_snapshot = config.get("is_snapshot", False)
         
         if is_snapshot:
-            self.grad_snapshot_local = self.calcular_gradiente_total()
-            return ndarrays_to_parameters(self.grad_snapshot_local), len(self.trainloader.dataset), {"is_snapshot": True}
+           
+            grad_snapshot = self.calcular_gradiente_total()
+            
+            
+            salvar_snapshot(self.cid, grad_snapshot)
+            
+       
+            return grad_snapshot, len(self.trainloader.dataset), {"is_snapshot": True}
         
         else:
             
@@ -89,10 +109,10 @@ class FlowerCliente(fl.client.NumPyClient):
             
             if len(grad_global) == 0:
                 grad_global = [np.zeros_like(p) for p in pesos_modelo]
-                
-            if hasattr(self, 'grad_snapshot_local'):
+                grad_snapshot_local = carregar_snapshot(self.cid)
+            if grad_snapshot_local is not None:
                 train_fsvrg(self.model, self.trainloader, optim, config['local_epochs'], 
-                            self.device, grad_global, self.grad_snapshot_local)
+                            self.device, grad_global, grad_snapshot_local)
             else:
                 train(self.model, self.trainloader, optim, config['local_epochs'], self.device)
             
@@ -142,10 +162,11 @@ def train_fsvrg(model, trainloader, optim, epochs, device, grad_global, grad_sna
             
             for param, snap, glob in zip(model.parameters(), g_snap, g_glob):
                 if param.grad is not None:
-                    param.grad = param.grad - snap + glob
+                    param.grad = param.grad -snap +glob
+            
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             
             optim.step()
-            
             
             norma_depois = torch.norm(list(model.parameters())[0].grad)
             print(f"Norma antes/depois: {norma_antes:.4f} / {norma_depois:.4f}")
