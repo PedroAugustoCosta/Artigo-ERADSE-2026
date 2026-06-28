@@ -5,14 +5,14 @@ from typing import List, Tuple, Union
 import numpy as np
 from flwr.server.strategy.aggregate import aggregate
 class AlgoritmoFedADAP(fl.server.strategy.FedAvg):
-    def __init__(self, taxa_aprendizado_global: float = 1.0, **kwargs):
+    def __init__(self, taxa_aprendizado_global: float ,alpha :float,*args, **kwargs):
            
-            super().__init__(**kwargs)
+            super().__init__(*args,**kwargs)
             
            
             self.versao_global = 0 
             self.history_angles = {}
-            self.alpha = 0.01
+            self.alpha = alpha
             
             
             self.taxa_aprendizado_global = taxa_aprendizado_global

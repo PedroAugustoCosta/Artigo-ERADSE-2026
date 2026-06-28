@@ -1,8 +1,10 @@
 ---
 
 _target_: strategies.adap.AlgoritmoFedADAP
+taxa_aprendizado_global: 0.01
 fraction_fit: 1.0            # Alterar de 1.0e-05 para 1.0
-min_fit_clients: 10          # Alterar para o número total de clientes (ou igual ao num_clients)
+min_fit_clients: 5          # Alterar para o número total de clientes (ou igual ao num_clients)
 fraction_evaluate: 1.0       # Alterar para 1.0
-min_evaluate_clients: 10     # Alterar para o número total de clientes
-min_available_clients: 10
+min_evaluate_clients: 5     # Alterar para o número total de clientes
+min_available_clients: 5
+alpha: 5

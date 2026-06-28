@@ -4,12 +4,12 @@
 _target_: strategies.dynamic.AlgoritmoFedDynamic
 
 # Parâmetros específicos da sua classe AlgoritmoFedDynamic
-taxa_aprendizado_global: 0.01 
+taxa_aprendizado_global: 0.01
 beta: 0.01
 
 
-fraction_fit: 1.0            # Alterar de 1.0e-05 para 1.0
-min_fit_clients: 10          # Alterar para o número total de clientes (ou igual ao num_clients)
-fraction_evaluate: 1.0       # Alterar para 1.0
-min_evaluate_clients: 10     # Alterar para o número total de clientes
-min_available_clients: 10
+fraction_fit: 1.0           
+min_fit_clients: 5        
+fraction_evaluate: 1.0       
+min_evaluate_clients: 5    
+min_available_clients: 5

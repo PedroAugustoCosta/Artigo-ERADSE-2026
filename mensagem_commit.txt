@@ -1,1 +1,0 @@
-modularizei o uso dos algoritmos, resolvi os bugs da junção do novo modelo de dataset com as demais funcionalidades e ja adicionei o fedavg e o fedprox como funcionalidades rodaveis pela linha de comando, para usar basta usar "python main.py strategy = (estrategia da sua escolha)" se quiser alterar os parametros basta ir no yaml da estrategia 

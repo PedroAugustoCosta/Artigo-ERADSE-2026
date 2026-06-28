@@ -7,4 +7,3 @@ min_fit_clients: 3        # Alterar para o número total de clientes (ou igual a
 fraction_evaluate: 1.0       # Alterar para 1.0
 min_evaluate_clients: 3     # Alterar para o número total de clientes
 min_available_clients: 3
-taxa_aprendizado_global: 1.0

@@ -2,10 +2,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import numpy as np
-
 import matplotlib.pyplot as plt
-import numpy as np
 import random
+
 
 def plot_metadados_com_log(dados_da_distribuicao):
     """
@@ -70,12 +69,12 @@ def plot_absolute_distribution(dict_usuarios, trainset):
     # Criar DataFrame para plotagem
     df = pd.DataFrame(dist_matrix, 
                       index=[f'Client {i}' for i in range(num_clients)],
-                      columns=[f'Digit {i}' for i in range(10)])
+                      columns=[f'Dígito {i}' for i in range(10)])
 
     # Plotar gráfico de barras empilhadas (Stacked Bar Chart)
     ax = df.plot(kind='bar', stacked=True, figsize=(14, 8), colormap="tab10", edgecolor="white")
 
-    plt.title("Quantidade Total de Dados por Cliente e Distribuição de Classes", fontsize=16, pad=20)
+    #plt.title("Quantidade Total de Dados por Cliente e Distribuição de Classes", fontsize=16, pad=20)
     plt.xlabel("Clientes", fontsize=14)
     plt.ylabel("Quantidade de Imagens (MNIST)", fontsize=14)
     
@@ -129,11 +128,18 @@ def plot_all_strategies(results_dir="."):
         "FedAvg": "resultados_FedAvg.json",
         "FedDynamic": "resultados_AlgoritmoFedDynamic.json",
         "FSVRG": "resultados_AlgoritmoFSVRG3.json",
-        "CO-OP": "resultados_AlgoritmoCOOP.json",
+        
         "FedAdp": "resultados_AlgoritmoFedADAP.json",
         "fedprox": "resultados_FedProx.json"
     }
-
+    strategy_files1 = {
+        "FedAvg": "resultados_FedAvg.json",
+        "FedDynamic": "resultados_AlgoritmoFedDynamic.json",               
+        "FedAdp": "resultados_AlgoritmoFedADAP.json",
+        "fedprox": "resultados_FedProx.json"
+    }
+    
+    #strategy_files={"FSVRG": "resultados_AlgoritmoFSVRG.json"}
     plt.figure(figsize=(10, 6))
     cores = {
     "FedAvg": "blue",
@@ -150,16 +156,70 @@ def plot_all_strategies(results_dir="."):
             with open(filename, "r") as f:
                 data = json.load(f)
                 # O eixo X é o número de rounds
-                rounds = range(1, len(data["accuracy"]) + 1)
+                rounds = range(0, len(data["accuracy"]))
                 plt.plot(rounds, data["accuracy"], marker='o', label=name, color=cores.get(name, 'black'))
 
-    plt.title("Convergência: Acurácia por Round de Comunicação", fontsize=14)
-    plt.xlabel("Communication Rounds", fontsize=12)
-    plt.ylabel("Test Accuracy", fontsize=12)
+    #plt.title("Convergência: Acurácia por Round de Comunicação", fontsize=14)
+    plt.xlabel("Rounds de Comunicação", fontsize=12)
+    plt.ylabel("Teste de Acurácia", fontsize=12)
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.legend()
+    plt.xlim(left=0)
+    plt.ylim(bottom=0)
     plt.tight_layout()
     plt.savefig("comparativo_algoritmos.png")
     plt.show()
 
 plot_all_strategies()
+
+def salvar_resultados_federados(meta=0.93, nome_arquivo="tabela_performance"):
+    tabela_dados = []
+    
+    # Dicionário mapeando Nome -> Arquivo
+    arquivos_map = {
+        "FedAvg": "resultados_FedAvg.json",
+        "FedProx": "resultados_FedProx.json",
+        "COOP": "resultados_AlgoritmoCOOP.json",
+        "FedDynamic": "resultados_AlgoritmoFedDynamic.json",
+        "FedADAP": "resultados_AlgoritmoFedADAP.json",
+        "FSVRG": "resultados_AlgoritmoFSVRG3.json"
+    }
+
+    for nome_alg, caminho_arquivo in arquivos_map.items():
+        if os.path.exists(caminho_arquivo):
+            # AQUI ESTAVA O ERRO: Precisamos carregar o JSON do arquivo
+            with open(caminho_arquivo, 'r') as f:
+                conteudo = json.load(f)
+                # Assumindo que a lista de acurácias está na chave "accuracy"
+                acuracias = conteudo["accuracy"] 
+            
+            # Agora processamos a lista carregada
+            rounds_atingidos = [i+1 for i, acc in enumerate(acuracias) if acc >= meta]
+            round_meta = rounds_atingidos[0] if rounds_atingidos else "N/A"
+            
+            pico_acc = acuracias[-1]
+            
+            tabela_dados.append({
+                "Algoritmo": nome_alg,
+                "Round_Meta": round_meta,
+                "Pico_Acuracia": f"{pico_acc:.4f}"
+            })
+        else:
+            print(f"Aviso: Arquivo {caminho_arquivo} não encontrado.")
+
+    df = pd.DataFrame(tabela_dados)
+
+    # Exportação
+    df.to_csv(f"{nome_arquivo}.csv", index=False)
+    
+    with open(f"{nome_arquivo}.tex", "w") as f:
+        f.write(df.to_latex(index=False, caption="Desempenho dos Algoritmos", label="tab:performance"))
+    
+    print(f"Arquivos '{nome_arquivo}.csv' e '{nome_arquivo}.tex' gerados!")
+    return df
+
+'''# Chamar a função
+
+'''
+df = salvar_resultados_federados()
+print(df)

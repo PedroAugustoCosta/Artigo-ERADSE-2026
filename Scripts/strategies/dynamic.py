@@ -7,9 +7,9 @@ from flwr.server.strategy.aggregate import aggregate
 from scipy.stats import wasserstein_distance
 import json
 class AlgoritmoFedDynamic(fl.server.strategy.FedAvg):
-    def __init__(self, taxa_aprendizado_global: float = 1.0, beta: float = 0.02, **kwargs):
+    def __init__(self, taxa_aprendizado_global: float , beta: float ,*args, **kwargs):
             
-            super().__init__(**kwargs)
+            super().__init__(*args,**kwargs)
             
             
             self.versao_global = 0 

@@ -1,18 +1,36 @@
-# Pastas de ambiente virtual
+
+
+# Ambientes Virtuais e Python
 venv/
 env/
 .env/
-.venv/
-
-# Arquivos temporários de Python e cache
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 
-# Pastas de IDEs (opcional, mas recomendado)
+# Dados e Datasets (Não subir gigabytes de dados)
+data/
+datasets/
+*.csv
+*.npz
+*.npy
+
+# Pesos e Modelos de Rede Neural (PyTorch/TensorFlow)
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.pb
+
+# Logs, Resultados e Gráficos Gerados (Evitar poluir o repositório)
+results/
+outputs/
+multirun/
+*.log
+
+# Arquivos de Sistema Operacional e IDEs
+.DS_Store
+Thumbs.db
 .vscode/
 .idea/
-
-# Opcional: Se estiver usando Godot no mesmo projeto
-.godot/
+.ipynb_checkpoints/
